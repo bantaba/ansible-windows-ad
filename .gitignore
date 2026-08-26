@@ -1,0 +1,50 @@
+# Ansible
+*.pyc
+__pycache__/
+.ansible/
+.ansible_cache/
+*.retry
+
+# Vault encrypted files
+vault.yml
+.vault_pass
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Python
+.env
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Sensitive data
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+secrets/
+credentials/
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
+
+# Project specific
+.vagrant/
+*.iso
+*.box
+
+# Temporary files
+temp/
+tmp/
+*.tmp
