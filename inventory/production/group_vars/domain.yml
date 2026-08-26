@@ -1,0 +1,6 @@
+---
+# Production domain configuration
+domain_name: "prod.example.com"
+netbios_name: "PROD"
+domain_mode: "10"
+forest_mode: "10"

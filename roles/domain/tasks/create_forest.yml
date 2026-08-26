@@ -1,0 +1,14 @@
+---
+    - name: Create new AD forest
+      microsoft.ad.domain:
+        dns_domain_name: "{{ dns_domain_name }}"
+        safe_mode_password: "{{ safe_mode_password }}"
+        create_dns_delegation: false
+        database_path: C:\Windows\NTDS
+        sysvol_path: C:\Windows\SYSVOL
+        domain_mode: "{{ domain_mode }}"
+        domain_netbios_name: "{{ domain_netbios_name }}"
+        forest_mode: "{{ forest_mode }}"
+        state: present
+      register: forest_creation
+

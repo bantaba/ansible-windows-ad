@@ -1,0 +1,21 @@
+---
+# Default variables for domain role
+# roles/domain/defaults/main.yml
+
+ad_dns_domain_name: "njongon.gbl"
+ad_domain_netbios_name: "njongon"
+
+ad_install_dns: true
+ad_include_management_tools: true
+
+ad_dns_domain_mode: "WinThreshold"
+ad_forest_mode: "WinThreshold"
+ad_domain_level: "WinThreshold"
+
+ad_database_path: "C:\\Windows\\NTDS"
+ad_sysvol_path: "C:\\Windows\\SYSVOL"
+domain_log_path: "C:\\Windows\\SYSVOL"
+
+ad_domain_dn: "DC=njongon,DC=gbl"
+
+...

@@ -1,0 +1,6 @@
+---
+# Certificates playbook
+- name: Certificates configuration
+  hosts: domain_controllers
+  roles:
+    - certificates

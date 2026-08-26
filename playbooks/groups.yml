@@ -1,0 +1,6 @@
+---
+# Groups playbook
+- name: Groups configuration
+  hosts: domain_controllers
+  roles:
+    - groups

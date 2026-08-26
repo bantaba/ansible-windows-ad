@@ -1,0 +1,5 @@
+---
+# Lab DC02 host variables
+ansible_host: 192.168.100.11
+ansible_user: Administrator
+server_role: domain_controller

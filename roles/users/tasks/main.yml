@@ -1,0 +1,13 @@
+---
+
+- name: Create Active Directory User
+  ansible.builtin.import_tasks: create.yml
+
+- name: Verify Active Directory User
+  ansible.builtin.import_tasks: verify.yml
+
+
+# Main tasks for users role
+# - include_tasks: create.yml
+# - include_tasks: memberships.yml
+# - include_tasks: verify.yml

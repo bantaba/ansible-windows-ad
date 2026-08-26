@@ -1,0 +1,12 @@
+---
+  - name: Create Organizational Units (OUs)
+    microsoft.ad.ou:
+      name: "{{ item.name }}"
+      path: "{{ item.path}}"
+      state: present
+      protect_from_deletion: "{{ item.ad_protect_from_deletion | default(omit) }}"
+      description: "{{ item.description }}"
+    loop: "{{ ad_ou_structure}}"
+    loop_control:
+      label: "{{ item.name}}"
+...  

@@ -1,0 +1,15 @@
+---
+# Role metadata
+galaxy_info:
+  author: Your Name
+  description: Create and manage Active Directory OUs
+  company: Your Company
+  license: GPL-3.0
+  min_ansible_version: "2.9"
+  platforms:
+    - name: Windows
+      versions:
+        - "2016"
+        - "2019"
+        - "2022"
+        - "2025"

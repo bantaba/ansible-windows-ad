@@ -1,0 +1,12 @@
+---
+# Main tasks for ous role
+# - include_tasks: create_ous.yml
+# - include_tasks: verify.yml
+
+- name: Create Active Directory OUs
+  ansible.builtin.import_tasks: create_ous.yml
+
+- name: Verify Active Directory OUs
+  ansible.builtin.import_tasks: verify.yml
+
+...  

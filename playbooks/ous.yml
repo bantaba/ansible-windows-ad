@@ -1,0 +1,6 @@
+---
+# OUs playbook
+- name: Organizational Units configuration
+  hosts: domain_controllers
+  roles:
+    - ous

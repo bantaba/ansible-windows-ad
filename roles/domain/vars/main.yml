@@ -1,0 +1,16 @@
+---
+# Variables for domain role
+# roles/domain/vars/main.yml
+
+ad_required_features:
+  - AD-Domain-Services
+  - RSAT-ADDS
+  - RSAT-AD-PowerShell
+
+ad_required_services:
+  - NTDS
+  - Netlogon
+  - DNS
+  - DnsServer
+
+...

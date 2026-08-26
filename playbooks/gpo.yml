@@ -1,0 +1,6 @@
+---
+# GPO playbook
+- name: Group Policy Objects configuration
+  hosts: domain_controllers
+  roles:
+    - gpo

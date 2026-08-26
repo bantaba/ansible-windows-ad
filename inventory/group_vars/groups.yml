@@ -1,0 +1,127 @@
+---
+# Groups configuration variables
+ad_groups:
+  # IT Department Groups
+  - name: "IT-Admins"
+    description: "IT Administrators with full domain access"
+    scope: "global"
+    category: "security"
+    path: "OU=Security Groups,OU=Groups,{{ domain_dn }}"
+    members:
+      - "itadmin1"
+      - "itadmin2"
+
+  - name: "IT-Users"
+    description: "Standard IT department users"
+    scope: "domainlocal"
+    category: "security"
+    path: "OU=Security Groups,OU=Groups,{{ domain_dn }}"
+    members:
+      - "ituser1"
+      - "ituser2"
+
+  - name: "Helpdesk"
+    description: "Helpdesk team members"
+    scope: "domainlocal"
+    category: "security"
+    path: "OU=Security Groups,OU=Groups,{{ domain_dn }}"
+    members:
+      - "helpdesk1"
+      - "helpdesk2"
+
+  # Finance Department Groups
+  - name: "Finance-Users"
+    description: "Standard finance department users"
+    scope: "domainlocal"
+    category: "security"
+    path: "OU=Security Groups,OU=Groups,{{ domain_dn }}"
+    members:
+      - "financeuser1"
+      - "financeuser2"
+
+  - name: "Finance-Managers"
+    description: "Finance department managers"
+    scope: "global"
+    category: "security"
+    path: "OU=Security Groups,OU=Groups,{{ domain_dn }}"
+    members:
+      - "financemgr1"
+      - "financemgr2"
+
+  # HR Department Groups
+  - name: "HR-Users"
+    description: "Human Resources department users"
+    scope: "domainlocal"
+    category: "security"
+    path: "OU=Security Groups,OU=Groups,{{ domain_dn }}"
+    members:
+      - "hruser1"
+      - "hruser2"
+
+  # Sales Department Groups
+  - name: "Sales-Users"
+    description: "Standard sales department users"
+    scope: "domainlocal"
+    category: "security"
+    path: "OU=Security Groups,OU=Groups,{{ domain_dn }}"
+    members:
+      - "salesuser1"
+      - "salesuser2"
+
+  - name: "Sales-Managers"
+    description: "Sales department managers"
+    scope: "global"
+    category: "security"
+    path: "OU=Security Groups,OU=Groups,{{ domain_dn }}"
+    members:
+      - "salesmgr1"
+      - "salesmgr2"
+
+  # Engineering Department Groups
+  - name: "Engineering-Users"
+    description: "Standard engineering department users"
+    scope: "domainlocal"
+    category: "security"
+    path: "OU=Security Groups,OU=Groups,{{ domain_dn }}"
+    members:
+      - "enguser1"
+      - "enguser2"
+
+  - name: "Engineering-Leads"
+    description: "Engineering team leads"
+    scope: "global"
+    category: "security"
+    path: "OU=Security Groups,OU=Groups,{{ domain_dn }}"
+    members:
+      - "englead1"
+      - "englead2"
+
+  # Operations Department Groups
+  - name: "Operations-Users"
+    description: "Standard operations department users"
+    scope: "domainlocal"
+    category: "security"
+    path: "OU=Security Groups,OU=Groups,{{ domain_dn }}"
+    members:
+      - "opsuser1"
+      - "opsuser2"
+
+  - name: "Operations-Managers"
+    description: "Operations department managers"
+    scope: "global"
+    category: "security"
+    path: "OU=Security Groups,OU=Groups,{{ domain_dn }}"
+    members:
+      - "opsmgr1"
+      - "opsmgr2"
+
+  # Marketing Department Groups
+  - name: "Marketing-Users"
+    description: "Marketing department users"
+    scope: "domainlocal"
+    category: "security"
+    path: "OU=Security Groups,OU=Groups,{{ domain_dn }}"
+    members:
+      - "mktuser1"
+      - "mktuser2"
+...

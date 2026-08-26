@@ -1,0 +1,19 @@
+---
+  - name: Create AD Users
+    microsoft.ad.user:
+      name: "{{ item.username }}"
+      firstname: "{{ item.firstname }}"
+      surname: "{{ item.surname }}"
+      display_name: "{{item.firstname}} {{item.surname}}"
+      description: "{{ item.description | default(omit) }}"
+      password: "{{ new_acct_password }}"
+      protect_from_deletion: "{{ ad_protect_from_deletion }}"
+      password_never_expires: "{{ ad_password_never_expires }}"
+      state: "{{ ad_user_state}}"
+      groups:
+        set: "{{ item.groups | default([]) }}"
+      path: "{{ item.path | default(omit) }}"
+    loop: "{{ ad_users }}"
+    loop_control:
+          label: "{{ item.firstname }} {{ item.surname }}"
+

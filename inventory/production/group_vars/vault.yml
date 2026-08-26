@@ -1,0 +1,3 @@
+---
+# Production vault variables - encrypt with ansible-vault
+vault_sensitive_data: ""

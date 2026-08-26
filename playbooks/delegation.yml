@@ -1,0 +1,6 @@
+---
+# Delegation playbook
+- name: Delegation configuration
+  hosts: domain_controllers
+  roles:
+    - delegation

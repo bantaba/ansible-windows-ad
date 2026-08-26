@@ -1,0 +1,15 @@
+---
+# Configure domain settings
+  - name: Ensure Domain Controller is promoted
+    microsoft.ad.domain_controller:
+      dns_domain_name: "{{dns_domain_name}}"
+      domain_admin_user: "{{domain_admin_user}}@{{dns_domain_name}}"
+      domain_admin_password: "{{domain_admin_password}}"
+      safe_mode_password: "{{safe_mode_password}}"
+      install_dns: true
+      state: domain_controller
+      sysvol_path: "{{ sysvol_path }}"
+      database_path: "{{ database_path }}"
+      domain_log_path: "{{ domain_log_path }}"
+    register: dc_promotion
+    reboot: true

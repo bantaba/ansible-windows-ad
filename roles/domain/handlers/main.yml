@@ -1,0 +1,4 @@
+--- # TRIGGERS ACTION UPON CHANGE i.e if something changes trigger/do this afterwards
+# Handlers for domain role 
+  - name: Configure AD
+    notify: Reboot server

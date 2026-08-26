@@ -1,0 +1,6 @@
+---
+# Lab domain configuration
+domain_name: "lab.example.com"
+netbios_name: "LAB"
+domain_mode: "10"
+forest_mode: "10"

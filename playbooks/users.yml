@@ -1,0 +1,6 @@
+---
+# Users playbook
+- name: Users configuration
+  hosts: domain_controllers
+  roles:
+    - users

@@ -1,0 +1,13 @@
+---
+      - name: Create Active Directory Groups
+        microsoft.ad.group:
+          name: "{{ item.name }}"
+          description: "{{ item.description | default(omit) }}"
+          scope: "{{ item.scope }}"
+          category: "{{ item.category }}"
+          path: "{{ item.path | default(omit) }}"
+          members: "{{ item.members  | default([]) }}"
+        loop: "{{ ad_groups }}"
+        loop_control:
+          label: "{{ item.name }}"
+...

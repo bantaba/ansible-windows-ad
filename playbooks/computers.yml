@@ -1,0 +1,6 @@
+---
+# Computers playbook
+- name: Computers configuration
+  hosts: domain_controllers
+  roles:
+    - computers

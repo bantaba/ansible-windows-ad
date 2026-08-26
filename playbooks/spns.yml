@@ -1,0 +1,6 @@
+---
+# SPNs playbook
+- name: Service Principal Names configuration
+  hosts: domain_controllers
+  roles:
+    - spns

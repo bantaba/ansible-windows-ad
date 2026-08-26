@@ -1,0 +1,117 @@
+---
+# Users configuration variables
+ad_users:
+  - username: alice.johnson
+    firstname: Alice
+    surname: Johnson
+    department: IT
+    title: Systems Administrator
+    path: "OU=UserAccounts,OU=Administrators,{{ domain_dn }}"
+    groups:
+      - IT-Admins
+
+  - username: bob.smith
+    firstname: Bob
+    surname: Smith
+    department: IT
+    title: Helpdesk Technician
+    path: "OU=UserAccounts,OU=Service Desk,{{ domain_dn }}"
+    groups:
+      - IT-Users
+      - Helpdesk
+
+  - username: carol.williams
+    firstname: Carol
+    surname: Williams
+    department: Finance
+    title: Financial 
+    path: "OU=Finance,{{ domain_dn }}"
+    groups:
+      - Finance-Users
+
+  - username: david.brown
+    firstname: David
+    surname: Brown
+    department: Finance
+    title: Finance Manager
+    path: "OU=Finance,{{ domain_dn }}"
+    groups:
+      - Finance-Users
+      - Finance-Managers
+
+  - username: emily.davis
+    firstname: Emily
+    surname: Davis
+    department: Human Resources
+    path: "OU=HR,{{ domain_dn }}"
+    title: HR Specialist
+    groups:
+      - HR-Users
+
+  - username: frank.miller
+    firstname: Frank
+    surname: Miller
+    department: Sales
+    title: Sales Representative
+    path: "OU=Sales,{{ domain_dn }}"
+    groups:
+      - Sales-Users
+
+  - username: grace.wilson
+    firstname: Grace
+    surname: Wilson
+    department: Sales
+    title: Sales Manager
+    path: "OU=Sales,{{ domain_dn }}"
+    groups:
+      - Sales-Users
+      - Sales-Managers
+
+  - username: henry.moore
+    firstname: Henry
+    surname: Moore
+    department: Engineering
+    title: Software Engineer
+    path: "OU=Engineering,{{ domain_dn }}"
+    groups:
+      - Engineering-Users
+
+  - username: isabella.taylor
+    firstname: Isabella
+    surname: Taylor
+    department: Engineering
+    title: Senior Software Engineer
+    path: "OU=Engineering,{{ domain_dn }}"
+    groups:
+      - Engineering-Users
+      - Engineering-Leads
+
+  - username: jack.anderson
+    firstname: Jack
+    surname: Anderson
+    department: Operations
+    title: Operations Manager
+    path: "OU=Operations,{{ domain_dn }}"
+    groups:
+      - Operations-Users
+      - Operations-Managers
+
+  - username: kelly.thomas
+    firstname: Kelly
+    surname: Thomas
+    department: Marketing
+    title: Marketing Specialist
+    path: "OU=Marketing,{{ domain_dn }}"
+    groups:
+      - Marketing-Users
+
+  - username: liam.jackson
+    firstname: Liam
+    surname: Jackson
+    department: Engineering
+    title: DevOps Engineer
+    path: "OU=Engineering,{{ domain_dn }}"
+    groups:
+      - Engineering-Users
+      - IT-Users
+...      

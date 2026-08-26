@@ -1,0 +1,6 @@
+---
+# Health Checks playbook
+- name: Health Checks
+  hosts: domain_controllers
+  roles:
+    - health_checks

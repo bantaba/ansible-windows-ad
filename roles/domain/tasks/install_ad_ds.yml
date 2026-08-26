@@ -1,0 +1,16 @@
+---
+
+- name: Check whether domain already exists
+  ansible.windows.win_powershell:
+    script: |
+      # Query whether AD DS is already configured
+      # Return state for Ansible
+  register: ad_domain_check
+
+- name: Create new forest
+  ansible.windows.win_powershell:
+    script: |
+      # Install-ADDSForest ...
+  when: not ad_domain_check...
+  notify: Reboot server
+...  

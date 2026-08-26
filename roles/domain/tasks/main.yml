@@ -1,0 +1,19 @@
+---
+# Main tasks for domain role
+- include_tasks: prerequisites.yml
+- include_tasks: install_ad_ds.yml
+- include_tasks: create_forest.yml
+- include_tasks: configure_domain.yml
+- include_tasks: verify.yml
+
+- name: Install prerequisites
+  ansible.builtin.import_tasks: prerequisites.yml
+
+- name: Install Active Directory Domain Services
+  ansible.builtin.import_tasks: install_ad_ds.yml
+
+- name: Configure domain
+  ansible.builtin.import_tasks: configure_domain.yml
+
+- name: Verify domain
+  ansible.builtin.import_tasks: verify.yml

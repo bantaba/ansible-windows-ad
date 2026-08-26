@@ -1,0 +1,6 @@
+---
+# DNS playbook
+- name: DNS configuration
+  hosts: domain_controllers
+  roles:
+    - dns

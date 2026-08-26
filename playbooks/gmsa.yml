@@ -1,0 +1,6 @@
+---
+# GMSA playbook
+- name: Group Managed Service Accounts configuration
+  hosts: domain_controllers
+  roles:
+    - gmsa

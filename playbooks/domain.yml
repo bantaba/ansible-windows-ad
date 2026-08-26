@@ -1,0 +1,6 @@
+---
+# Domain playbook
+- name: AD Domain configuration
+  hosts: domain_controllers
+  roles:
+    - domain

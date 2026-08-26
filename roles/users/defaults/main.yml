@@ -1,0 +1,4 @@
+---
+# Default variables for users role
+ad_password_never_expires: false
+ad_user_state: present

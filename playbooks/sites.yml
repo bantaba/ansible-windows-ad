@@ -1,0 +1,6 @@
+---
+# Sites playbook
+- name: Sites and Subnets configuration
+  hosts: domain_controllers
+  roles:
+    - sites
