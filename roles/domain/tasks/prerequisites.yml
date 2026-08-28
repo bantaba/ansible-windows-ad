@@ -1,5 +1,5 @@
 ---
-# Prerequisites for AD DS installation
+# Prerequisites for AD DS installation (Check if server Domain Role is not in (4,5))
 - name: Install AD DS
   ansible.windows.win_feature:
     name: "{{ ad_required_features }}"
