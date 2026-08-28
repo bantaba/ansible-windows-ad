@@ -1,216 +1,120 @@
-ansible/
-├── inventory/
-├── playbooks/
-│   └── domain.yml
-├── roles/
-│   ├── ad_ous/
-│   ├── ad_users/
-│   ├── ad_groups/
-│   ├── ad_computers/
-│   ├── ad_service_accounts/
-│   ├── ad_gpo/
-│   ├── ad_dns/
-│   ├── ad_sites/
-│   └── ad_delegation/
-└── vars/
-    └── domain.yml
+# Ansible Windows AD Project Layout
 
+## Repository Structure
 
-ad-automation/
-│
+```text
+ansible-windows-ad/
 ├── inventory/
+│   ├── group_vars/
 │   ├── production/
+│   │   ├── group_vars/
+│   │   ├── host_vars/
+│   │   └── hosts.yml
 │   └── lab/
-│
-├── group_vars/
-│   └── domain.yml
-│
+│       ├── group_vars/
+│       ├── host_vars/
+│       └── hosts.yml
+├── playbooks/
+│   ├── certificates.yml
+│   ├── computers.yml
+│   ├── delegation.yml
+│   ├── dns.yml
+│   ├── domain.yml
+│   ├── gmsa.yml
+│   ├── gpo.yml
+│   ├── groups.yml
+│   ├── health_checks.yml
+│   ├── ous.yml
+│   ├── password_policies.yml
+│   ├── service_accounts.yml
+│   ├── sites.yml
+│   ├── spns.yml
+│   └── users.yml
 ├── roles/
-│   ├── domain/
-│   ├── ous/
-│   ├── users/
-│   ├── groups/
+│   ├── certificates/
 │   ├── computers/
-│   ├── service_accounts/
-│   ├── gmsa/
-│   ├── password_policies/
-│   ├── gpo/
 │   ├── delegation/
 │   ├── dns/
+│   ├── domain/
+│   ├── gmsa/
+│   ├── gpo/
+│   ├── groups/
+│   ├── health_checks/
+│   ├── ous/
+│   ├── password_policies/
+│   ├── service_accounts/
 │   ├── sites/
 │   ├── spns/
-│   ├── certificates/
-│   └── health_checks/
-│
-└── playbooks/
-    ├── domain.yml
-    ├── identities.yml
-    ├── computers.yml
-    ├── policies.yml
-    ├── dns.yml
-    └── health.yml    
+│   └── users/
+├── .gitignore
+└── README.md
+```
 
-roles/
-└── domain/
-    ├── defaults/
-    │   └── main.yml
-    ├── vars/
-    │   └── main.yml
-    ├── tasks/
-    │   ├── main.yml
-    │   ├── prerequisites.yml
-    │   ├── install_ad_ds.yml
-    │   ├── create_forest.yml
-    │   ├── configure_domain.yml
-    │   └── verify.yml
-    ├── handlers/
-    │   └── main.yml
-    ├── templates/
-    ├── files/
-    └── meta/
-        └── main.yml
-roles/
-├── domain/
-│   ├── defaults/main.yml
-│   └── tasks/...
-│
-├── ous/
-│   ├── defaults/main.yml
-│   └── tasks/...
-│
-├── users/
-│   ├── defaults/main.yml
-│   └── tasks/...
-│
-├── groups/
-│   ├── defaults/main.yml
-│   └── tasks/...
-│
-└── gpo/
-    ├── defaults/main.yml
-    └── tasks/...
-    
----
-01 windows_baseline
-        ↓
-02 domain
-        ↓
-03 domain_controllers
-        ↓
-04 dns
-        ↓
-05 ous
-        ↓
-06 groups
-        ↓
-07 users
-        ↓
-08 computers
-        ↓
-09 service_accounts
-        ↓
-10 gpo
-        ↓
-11 delegation
-        ↓
-12 sites/subnets
-        ↓
-13 spns
-        ↓
-14 health_checks
----
+## Role Execution Order
 
-Reponsible:
-    Forest
-    Domain
-    Domain-level configuration
-    Functional levels
-    AD DS prerequisites
-    Initial forest creation
-    Domain verification
+The intended execution order is shown below. Windows baseline and additional domain controller automation are planned stages; the remaining role directories are present in the repository.
 
+1. Windows baseline
+2. Domain and forest
+3. Domain controllers
+4. DNS
+5. Organizational units (OUs)
+6. Groups
+7. Users
+8. Computers
+9. Service accounts
+10. Group Managed Service Accounts (GMSAs)
+11. Password policies
+12. Group Policy Objects (GPOs)
+13. Delegation
+14. Sites and subnets
+15. Service Principal Names (SPNs)
+16. Certificates
+17. Health checks
 
----
+## Role Responsibilities
 
-domain role
-    inputs:
-        domain_name
-        netbios_name
-        domain_mode
-        forest_mode
+| Role | Responsibility |
+| --- | --- |
+| `domain` | Install AD DS and create or configure the forest and domain. |
+| `ous` | Create and verify the OU hierarchy. |
+| `users` | Create and manage user accounts. |
+| `groups` | Create groups and manage group memberships. |
+| `computers` | Manage computer accounts. |
+| `service_accounts` | Create and manage service accounts. |
+| `gmsa` | Configure Group Managed Service Accounts. |
+| `password_policies` | Configure domain and fine-grained password policies. |
+| `gpo` | Create, link, and configure Group Policy Objects. |
+| `delegation` | Configure delegated permissions in Active Directory. |
+| `dns` | Configure and verify Active Directory-integrated DNS. |
+| `sites` | Configure sites, subnets, and site links. |
+| `spns` | Manage Service Principal Names. |
+| `certificates` | Manage certificate-related configuration. |
+| `health_checks` | Verify domain services, DNS, and replication health. |
 
-    does:
-        install/configure AD DS
----
+## Domain Role Inputs
 
-Installing AD DS on additional servers
-Promoting additional DCs
-Adding DCs to sites
-DNS installation on DCs
-Global Catalog configuration
-FSMO roles
-Replication verification
-DC demotion
+The `domain` role accepts these primary variables:
 
+```yaml
+domain_name: "example.com"
+netbios_name: "EXAMPLE"
+domain_mode: "10"
+forest_mode: "10"
+```
 
----
-groups role
-    inputs:
-        ad_groups
-        ad_group_memberships
+Use environment-specific values in the appropriate inventory variable files. Keep passwords and other secrets in Ansible Vault-protected files.
 
-    does:
-        create groups
-        manage membership
+## Domain Task Flow
 
----
-ous role
-    inputs:
-        ad_ous
-
-    does:
-        create OU hierarchy        
-01 windows_baseline
-        ↓
-02 domain
-        ↓
-03 domain_controllers
-        ↓
-04 dns
-        ↓
-05 ous
-        ↓
-06 groups
-        ↓
-07 users
-        ↓
-08 computers
-        ↓
-09 service_accounts
-        ↓
-10 gpo
-        ↓
-11 delegation
-        ↓
-12 sites/subnets
-        ↓
-13 spns
-        ↓
-14 health_checks    
-
-
-
+```text
 playbooks/domain.yml
-        │
-        │ roles:
-        ▼
-     domain
-        │
-        ▼
-roles/domain/tasks/main.yml
-        │
-        ├── prerequisites.yml
-        ├── install_ad_ds.yml
-        ├── create_forest.yml
-        ├── configure_domain.yml
-        └── verify.yml
+└── roles/domain/tasks/main.yml
+    ├── prerequisites.yml
+    ├── install_ad_ds.yml
+    ├── create_forest.yml
+    ├── configure_domain.yml
+    └── verify.yml
+```
+
+The domain role is responsible for AD DS prerequisites, initial forest creation, domain-level configuration, functional levels, and domain verification.

@@ -1,12 +1,16 @@
 ---
 # Verify computer accounts
-- name: Verify Active Directory computer accounts
-  microsoft.ad computer:
-    name: "{{ item.name }}"
-    path: "{{ item.path | default(omit) }}"
-    state: query
-  loop: "{{ ad_computer_structure | default([]) }}"
-  loop_control:
-    label: "{{ item.name }}"
+- name: Check Active Directory computer accounts
+  ansible.windows.win_powershell:
+    script: |
+      $role = (Get-CimInstance Win32_ComputerSystem).PartOfDomain
+  register: domain_check
+  changed_when: false
 
+- name: Verify Active Directory computer accounts
+  ansible.builtin.assert:
+    that:
+      - domain_check.stdout | trim | lower == 'true'
+  fail_msg: "Server is not joined to an Active Directory domain."
+  success_msg: "Server is joined to an Active Directory domain."
 ...
