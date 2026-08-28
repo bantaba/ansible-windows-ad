@@ -1,0 +1,14 @@
+---
+# Create computer accounts
+- name: Create Active Directory computer accounts
+  microsoft.ad.computer:
+    name: "{{ item.name }}"
+    path: "{{ item.path | default(omit) }}"
+    description: "{{ item.description | default(omit) }}"
+    enabled: "{{ item.enabled | default(true) }}"
+    state: present
+  loop: "{{ ad_computer_structure | default([]) }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+...

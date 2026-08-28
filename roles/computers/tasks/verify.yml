@@ -1,0 +1,12 @@
+---
+# Verify computer accounts
+- name: Verify Active Directory computer accounts
+  microsoft.ad computer:
+    name: "{{ item.name }}"
+    path: "{{ item.path | default(omit) }}"
+    state: query
+  loop: "{{ ad_computer_structure | default([]) }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+...
