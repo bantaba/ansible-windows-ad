@@ -1,2 +1,35 @@
 ---
-# Verify domain configuration
+  - name: Verify if Server is a Domain Controller
+    ansible.windows.win_powershell: 
+      script: |
+        $role =  (Get-CimInstance Win32_ComputerSystem).DomainRole
+        $ansible_result = @{
+          is_domain_controller = $role -in @(4,5 )
+          domain_role = $role
+        }
+    register: dc_status
+    changed_when: false
+
+  - name: Verify is Domain Controller
+    ansible.builtin.assert:
+      that:
+        - dc_status.is_domain_controller
+      fail_msg: "Server is NOT a domain controller."
+      success_msg: "Server IS a domain controller."
+      
+  # - name: Check if Domain Controller 
+  #   ansible.windows.win_shell: |
+  #     (Get-CimInstance Win32_ComputerSystem).DomainRole
+  #   register: domain_role
+  #   changed_when: false
+  
+  # - name: Verify if Domain Controller 
+  #   ansible.builtin.assert:
+  #     that:
+  #       - (domain_role.stdout | trim | int) in [4, 5]
+  #     fail_msg: "Server is NOT a domain controller."
+  #     success_msg: "Server IS a domain controller."
+
+...    
+
+
