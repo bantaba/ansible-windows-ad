@@ -264,7 +264,7 @@ ansible all -i inventory/production -m win_ping
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is for educational and demonstration purposes.
 
 ## Changelog
 
