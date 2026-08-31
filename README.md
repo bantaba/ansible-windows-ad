@@ -157,14 +157,60 @@ ansible-playbook playbooks/ous.yml -i inventory/production
 ansible-playbook playbooks/users.yml -i inventory/production --tags "create"
 ```
 
-### Vault encrypted variables
-```bash
-# Encrypt a file
-ansible-vault encrypt inventory/production/group_vars/vault.yml
+### Create and use Ansible Vault variables
 
-# Run playbook with vault
-ansible-playbook playbooks/domain.yml -i inventory/production --ask-vault-pass
-```
+Use Ansible Vault to protect passwords and other sensitive values. The repository ignores files named `vault.yml`, so do not commit an unencrypted vault file.
+
+1. **Create a vault file** for the environment you will use:
+
+   ```bash
+   ansible-vault create inventory/lab/group_vars/vault.yml
+   # or
+   ansible-vault create inventory/production/group_vars/vault.yml
+   ```
+
+   Add variables in YAML format, for example:
+
+   ```yaml
+   ansible_user: Administrator
+   ansible_password: "replace-with-a-secret"
+   ansible_winrm_transport: ntlm
+   ```
+
+2. **Encrypt an existing file** if it was created as plain text:
+
+   ```bash
+   ansible-vault encrypt inventory/lab/group_vars/vault.yml
+   ```
+
+3. **Edit an encrypted file** without decrypting it permanently:
+
+   ```bash
+   ansible-vault edit inventory/lab/group_vars/vault.yml
+   ```
+
+4. **Run a playbook and provide the vault password interactively**:
+
+   ```bash
+   ansible-playbook playbooks/domain.yml -i inventory/lab --ask-vault-pass
+   ```
+
+5. **Use a password file in automation**. Store the file outside the repository and restrict its permissions:
+
+   ```bash
+   ansible-playbook playbooks/domain.yml \
+     -i inventory/production \
+     --vault-password-file C:\\secure\\ansible-vault-password.txt
+   ```
+
+6. **Inspect or rotate the vault password**:
+
+   ```bash
+   ansible-vault view inventory/lab/group_vars/vault.yml
+   ansible-vault rekey inventory/lab/group_vars/vault.yml
+   ```
+
+Never place vault passwords, private keys, or unencrypted credentials in the repository. If a secret is exposed, rotate it immediately and remove it from Git history.
 
 ## Security Best Practices
 
@@ -218,11 +264,7 @@ ansible all -i inventory/production -m win_ping
 
 ## License
 
-[Specify your license here]
-
-## Author
-
-[Your Name/Organization]
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Changelog
 
