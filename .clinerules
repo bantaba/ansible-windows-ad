@@ -1,0 +1,2 @@
+- Always follow the rules process defined by `_agent/rules/rules.md`
+- Make sure you understand the rules that apply to your task and that you follow them precisely
