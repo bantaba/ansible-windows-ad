@@ -1,0 +1,5 @@
+---
+# Verify Group Policy Objects
+  # ansible.windows.win_shell: "gpresult /H report.html"
+
+...

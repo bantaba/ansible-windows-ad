@@ -1,0 +1,9 @@
+---
+# Main tasks for gpo role
+- name: Enable Audit Logs Group Policy Objects
+  ansible.builtin.import_tasks: enable_Audit_logs.yml
+
+- name: Verify Group Policy Objects
+  ansible.builtin.import_tasks: verify.yml
+
+...

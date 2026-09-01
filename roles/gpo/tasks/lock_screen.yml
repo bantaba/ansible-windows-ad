@@ -1,0 +1,20 @@
+---
+
+...
+
+# Computer Configuration -> Windows Settings -> Security Settings -> Local Policies -> Security Options.
+# Modify the time for Interactive Logon: Machine inactivity limit.
+
+# ├── Create GPO (win_powershell | New-GPO)
+# │      └── Workstation Security Baseline
+# │
+# ├── Configure: (win_powershell | Set-GPRegistryValue)
+# │      ├── Password policy
+# │      ├── Windows Defender
+# │      ├── Firewall
+# │      ├── SmartScreen
+# │      ├── Windows Update
+# │      └── Registry policies
+# │
+# └── Link: (windows.ad_gpo)
+#       └── OU=Workstations

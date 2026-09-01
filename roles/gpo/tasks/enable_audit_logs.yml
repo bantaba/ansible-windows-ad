@@ -1,0 +1,6 @@
+---
+# Create and configure Group Policy Objects
+
+...
+# his policy is in Computer Configuration -> Windows Settings -> Security Settings -> Audit Policy.
+# Change “Audit System Events” to Success, Failure.
